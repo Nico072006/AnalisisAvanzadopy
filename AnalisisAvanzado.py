@@ -15,9 +15,9 @@ appnotas = dash.Dash(__name__)
 appnotas.layout = html.Div([
     html.H1("TABLERO AVANZADO", style={
         "textAlign": "center",
-        "backgroundColor": "#1E1BD2",
-        "color": "white",
-        "padding": "20px"
+        "backgroundColor": "#000000",
+        "color": "#FFFFFF",
+        "padding": "30px"
     }),
  
     # crear los filtros
@@ -100,9 +100,14 @@ appnotas.layout = html.Div([
     Output("tabla","data"),
     Output("tabla","columns"),
     Output("Kpis","children"),
+    Output("gra_detallado","figure"),
+    Output("histograma", "figure"),
+    Output("dispersion", "figure"),
+    Output("pie", "figure"),
     Input("filtro carrera","value"),
     Input("slider_edad", "value"),
     Input("slider_promedio", "value")
+
 )
 def actualizar_comp(carrera,rangoedad,rangoprome):
     filtro = df[
@@ -117,19 +122,40 @@ def actualizar_comp(carrera,rangoedad,rangoprome):
     maximo = round(filtro["Promedio"].max(),2) if len(filtro) > 0 else 0
     kpis= [
         html.Div([html.H4("Promedio"),html.H2(promedio)],
-                 style={"backgroundColor":"#3498db","color":"white","padding":"15px","borderRadius":"10px"}),
-        html.Div([html.H4("Total estudiantes"),html.H2(total)],
-                 style={"backgroundColor":"#3498db","color":"white","padding":"15px","borderRadius":"10px"}),
+                 style={"backgroundColor":"#001aff","color":"white","padding":"30px","borderRadius":"50%","textAlign": "center"}),
+        html.Div([html.H4("Total Estudiantes"),html.H2(total)],
+                 style={"backgroundColor":"#001aff","color":"white","padding":"30px","borderRadius":"50%","textAlign": "center"}),
         html.Div([html.H4("Maximo"),html.H2(maximo)],
-                 style={"backgroundColor":"#3498db","color":"white","padding":"15px","borderRadius":"10px"}),
+                 style={"backgroundColor":"#001aff","color":"white","padding":"30px","borderRadius":"50%","textAlign": "center"}),
     ]
 
+    df_barras= filtro.groupby("Carrera")["Promedio"].mean().reset_index()
+    fig_barras = px.bar(df_barras, x="Carrera", y="Promedio", 
+                        title="Desempeño Promedio por Carrera",
+                        color="Promedio", color_continuous_scale="Viridis")
 
+    fig_hist = px.histogram(filtro, x="Promedio", nbins=10,
+                            title="Distribución de Frecuencia de Promedios",
+                            color_discrete_sequence=['#1E1BD2'])
+    
+    fig_disp = px.scatter(filtro, x=filtro.index, y="Promedio", 
+                          hover_name="Nombre" if "Nombre" in filtro.columns else None,
+                          title="Dispersión Individual de Promedios",
+                          color="Promedio")
+                              
+
+    fig_pie = px.pie(filtro, names="Edad", values="Promedio", 
+                     title="Aporte de Promedio por Rango de Edad",
+                     hole=0.3)
     
     return(
         filtro.to_dict("records"),
         [{"name":i,"id":i}for i in filtro.columns],
-        kpis
+        kpis,
+        fig_barras, 
+        fig_hist,   
+        fig_disp,   
+        fig_pie    
     )
  
 # ejecutar la app
