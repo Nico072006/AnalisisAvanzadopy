@@ -80,7 +80,7 @@ appnotas.layout = html.Div([
  
     # crear el grafico interactivos
     dcc.Loading(
-        dcc.Graph(id="gra_detallado"),
+        dcc.Graph(id="grafico_interactivo_tabla"),
         type="default"
     ),
  
@@ -100,7 +100,7 @@ appnotas.layout = html.Div([
     Output("tabla","data"),
     Output("tabla","columns"),
     Output("Kpis","children"),
-    Output("gra_detallado","figure"),
+    Output("gran_detallado","figure"),
     Output("histograma", "figure"),
     Output("dispersion", "figure"),
     Output("pie", "figure"),
@@ -122,11 +122,26 @@ def actualizar_comp(carrera,rangoedad,rangoprome):
     maximo = round(filtro["Promedio"].max(),2) if len(filtro) > 0 else 0
     kpis= [
         html.Div([html.H4("Promedio"),html.H2(promedio)],
-                 style={"backgroundColor":"#001aff","color":"white","padding":"30px","borderRadius":"50%","textAlign": "center"}),
+                 style={"backgroundColor":"#001aff",
+                        "color":"white",
+                        "padding":"30px",
+                        "borderRadius":"50%",
+                        "textAlign": "center"
+                        }),
         html.Div([html.H4("Total Estudiantes"),html.H2(total)],
-                 style={"backgroundColor":"#001aff","color":"white","padding":"30px","borderRadius":"50%","textAlign": "center"}),
+                 style={"backgroundColor":"#001aff",
+                        "color":"white",
+                        "padding":"30px",
+                        "borderRadius":"50%",
+                        "textAlign": "center"
+                        }),
         html.Div([html.H4("Maximo"),html.H2(maximo)],
-                 style={"backgroundColor":"#001aff","color":"white","padding":"30px","borderRadius":"50%","textAlign": "center"}),
+                 style={"backgroundColor":"#001aff",
+                        "color":"white",
+                        "padding":"30px",
+                        "borderRadius":"50%",
+                        "textAlign": "center"
+                        }),
     ]
 
     df_barras= filtro.groupby("Carrera")["Promedio"].mean().reset_index()
@@ -157,6 +172,31 @@ def actualizar_comp(carrera,rangoedad,rangoprome):
         fig_disp,   
         fig_pie    
     )
+
+@appnotas.callback(
+    Output("grafico_interactivo_tabla","figure"),
+    Input("tabla","derived_virtual_data"),
+    Input("tabla","derived_virtual_selected_rows")
+)
+def actualizartab(rows,selected_rows):
+    if rows is None:
+        return px.scatter(title="Sin Datos")
+    dff =pd.DataFrame(rows)
+
+    if selected_rows:
+        dff=dff.iloc[selected_rows]
+        color_col = "Desempeño" if "Desempeño" in dff.columns else None
+        fig =px.scatter(dff,
+                        x="Edad",
+                        y="Promedio",
+                        color=color_col,
+                        size="Promedio",
+                        title="Analisis detallado (Seleccione filas de la tabla)",
+                        trendline="ols"if len(dff) > 1 else None
+                        )
+        return fig
+
+
  
 # ejecutar la app
 if __name__ == '__main__':
