@@ -5,20 +5,23 @@ import dash
 from dash import html, dcc, Input, Output
 from dash import dash_table
  
-# cargar los datos
+"""# cargar los datos
 ruta = os.path.join(os.path.dirname(__file__), "notas_limpio.xlsx")
-df = pd.read_excel(ruta)
- 
+df = pd.read_excel(ruta)"""
+
+
+def creartablero(server):
+
 # iniciar app
-appnotas = dash.Dash(__name__)
+    appnotas = dash.Dash(__name__,server=server,url_base_pathname="/dashprincipal",suppress_callback_exceptions="")
  
-appnotas.layout = html.Div([
-    html.H1("TABLERO AVANZADO", style={
-        "textAlign": "center",
-        "backgroundColor": "#000000",
-        "color": "#FFFFFF",
-        "padding": "30px"
-    }),
+    appnotas.layout = html.Div([
+        html.H1("TABLERO AVANZADO", style={
+            "textAlign": "center",
+            "backgroundColor": "#000000",
+            "color": "#FFFFFF",
+            "padding": "30px"
+        }),
  
     # crear los filtros
     html.Div([

@@ -1,17 +1,41 @@
 import mysql.connector
+import pandas as pd
 
-
-def conectar ():
-    conexion =mysql.connector.connect(
+def conectar():
+    return mysql.connector.connect(
         host="localhost",
         user="root",
         password="",
         database="estudiantes"
-
     )
-    return conexion 
 
-if __name__=="__main__":
-    coon=conectar()
-    print("Conexion Exitosa")
-    coon.close()
+def obtenerusuarios(UserName):
+    conn = conectar()
+    cursor = conn.cursor(dictionary=True)
+    
+    # Nota la coma después de UserName para que sea una tupla
+    cursor.execute("SELECT * FROM usuarios WHERE UserName=%s", (UserName,))
+    usuario = cursor.fetchone()
+    
+    conn.close()
+    return usuario
+
+def obtenerestudiantes():
+    conn = conectar()
+    query = "SELECT * FROM estudiantes"
+    
+    # Cambiamos read_excel por read_sql
+    df = pd.read_sql(query, conn)
+    
+    conn.close()
+    return df
+
+if __name__ == "__main__":
+    try:
+        conn = conectar()
+        print("Conexión Exitosa")
+        
+        
+        conn.close()
+    except Exception as e:
+        print(f"Error al conectar: {e}")
