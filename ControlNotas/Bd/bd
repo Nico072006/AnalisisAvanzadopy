@@ -1,0 +1,84 @@
+CREATE DATABASE estudiantes
+    DEFAULT CHARACTER SET = 'utf8mb4';
+
+    use estudiantes;
+
+
+    CREATE TABLE `estudiantes` (
+  `idEstudiante` int(11) NOT NULL AUTO_INCREMENT,
+  `NombreEstu` varchar(40) NOT NULL,
+  `EdadEstu` int(11) DEFAULT NULL,
+  `Carrera` varchar(40) DEFAULT NULL,
+  `Nota1` decimal(3,1) DEFAULT NULL,
+  `Nota2` decimal(3,1) DEFAULT NULL,
+  `Nota3` decimal(3,1) DEFAULT NULL,
+  `Promedio` decimal(3,1) DEFAULT NULL,
+  `Desempeno` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`idEstudiante`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 3. Inserción de datos en `estudiantes`
+INSERT INTO `estudiantes` (`NombreEstu`, `EdadEstu`, `Carrera`, `Nota1`, `Nota2`, `Nota3`, `Promedio`, `Desempeno`) VALUES
+('Paula', 21, 'Fisica', 4.0, 4.0, 3.0, 3.0, 'Bueno'),
+('Ana', 18, 'Ingenieria', 2.0, 5.0, 3.0, 3.0, 'regular'),
+('Maria', 23, 'Ingenieria', 5.0, 4.0, 3.0, 4.0, 'Bueno'),
+('Luis', 22, 'Matematicas', 2.0, 3.0, 4.0, 3.0, 'regular'),
+('Ana', 21, 'Ingenieria', 5.0, 5.0, 5.0, 5.0, 'Excelente'),
+('Maria', 23, 'Ingenieria', 4.0, 3.0, 3.0, 3.0, 'regular'),
+('Ana', 20, 'Fisica', 2.0, 3.0, 3.0, 2.0, 'regular'),
+('Luis', 20, 'Ingenieria', 4.0, 2.0, 4.0, 3.0, 'Bueno'),
+('Luis', 23, 'Fisica', 4.0, 3.0, 2.0, 3.0, 'regular'),
+('Luis', 22, 'Ingenieria', 3.0, 3.0, 2.0, 2.0, 'regular'),
+('Ana', 20, 'Fisica', 5.0, 3.0, 2.0, 3.0, 'regular'),
+('Carlos', 19, 'Fisica', 4.0, 2.0, 2.0, 2.0, 'regular'),
+('Luis', 21, 'Fisica', 2.0, 5.0, 5.0, 4.0, 'Bueno'),
+('Maria', 22, 'Fisica', 5.0, 2.0, 2.0, 3.0, 'regular'),
+('Jose', 18, 'Fisica', 4.0, 3.0, 2.0, 3.0, 'regular'),
+('Paula', 21, 'Fisica', 5.0, 4.0, 2.0, 3.0, 'Bueno'),
+('Luis', 22, 'Ingenieria', 2.0, 3.0, 2.0, 2.0, 'Deficiente'),
+('Maria', 22, 'Matematicas', 5.0, 5.0, 2.0, 4.0, 'Bueno'),
+('Luis', 20, 'Matematicas', 5.0, 4.0, 5.0, 4.0, 'Excelente'),
+('Ana', 22, 'Ingenieria', 2.0, 3.0, 4.0, 3.0, 'regular'),
+('Ana', 20, 'Fisica', 3.0, 5.0, 2.0, 3.0, 'Bueno'),
+('Carlos', 20, 'Ingenieria', 2.0, 4.0, 5.0, 3.0, 'Bueno'),
+('Luis', 23, 'Fisica', 3.0, 2.0, 5.0, 3.0, 'Bueno'),
+('Ana', 21, 'Ingenieria', 3.0, 5.0, 4.0, 4.0, 'Bueno'),
+('Carlos', 19, 'Matematicas', 4.0, 3.0, 3.0, 3.0, 'regular'),
+('Maria', 18, 'Fisica', 3.0, 3.0, 5.0, 3.0, 'Bueno'),
+('Carlos', 22, 'Matematicas', 3.0, 4.0, 2.0, 3.0, 'regular'),
+('Luis', 21, 'Ingenieria', 2.0, 3.0, 5.0, 3.0, 'regular'),
+('Jose', 20, 'Matematicas', 4.0, 3.0, 3.0, 3.0, 'regular'),
+('Ana', 19, 'Ingenieria', 3.0, 2.0, 3.0, 3.0, 'regular'),
+('Maria', 18, 'Ingenieria', 5.0, 4.0, 4.0, 4.0, 'Excelente'),
+('Maria', 23, 'Fisica', 2.0, 3.0, 4.0, 3.0, 'regular'),
+('Jose', 18, 'Matematicas', 5.0, 3.0, 4.0, 4.0, 'Bueno'),
+('Ana', 18, 'Matematicas', 5.0, 2.0, 5.0, 4.0, 'Bueno'),
+('Jose', 20, 'Fisica', 2.0, 2.0, 2.0, 2.0, 'Deficiente'),
+('Paula', 23, 'Fisica', 5.0, 5.0, 3.0, 4.0, 'Bueno'),
+('Jose', 18, 'Fisica', 4.0, 3.0, 3.0, 3.0, 'Bueno'),
+('Ana', 21, 'Fisica', 5.0, 3.0, 5.0, 4.0, 'Excelente'),
+('Ana', 22, 'Ingenieria', 3.0, 5.0, 2.0, 3.0, 'Bueno'),
+('Ana', 23, 'Fisica', 3.0, 2.0, 2.0, 2.0, 'regular'),
+('Luis', 18, 'Fisica', 3.0, 3.0, 4.0, 3.0, 'Bueno'),
+('Luis', 23, 'Fisica', 3.0, 4.0, 3.0, 3.0, 'Bueno'),
+('Ana', 22, 'Fisica', 2.0, 5.0, 3.0, 3.0, 'regular'),
+('Maria', 21, 'Fisica', 5.0, 5.0, 4.0, 4.0, 'Excelente'),
+('Paula', 20, 'Matematicas', 2.0, 3.0, 2.0, 2.0, 'Deficiente'),
+('Ana', 18, 'Fisica', 5.0, 2.0, 2.0, 3.0, 'regular'),
+('Nicolasito', 19, 'Ingenieria', 5.0, 5.0, 5.0, 5.0, 'Excelente');
+
+-- --------------------------------------------------------
+
+-- 4. Creación de la tabla `usuarios`
+CREATE TABLE `usuarios` (
+  `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
+  `UserName` varchar(40) NOT NULL,
+  `PasswordUser` varchar(255) NOT NULL,
+  `RolUsu` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`idUsuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- 5. Inserción de datos en `usuarios`
+INSERT INTO `usuarios` (`UserName`, `PasswordUser`, `RolUsu`) VALUES
+('Nicolas', '123', 'Admin');
+

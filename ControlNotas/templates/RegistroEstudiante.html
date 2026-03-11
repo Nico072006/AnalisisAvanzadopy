@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+</head>
+<body>
+    <h1>Registro de Estudiante</h1>
+
+    <form action="/registro" method="POST">
+        <div class="">
+            <label >Nombre</label>
+            <input name="NombreEstu" type="text" placeholder="Nicolas">
+        </div>
+        <div class="">
+            <label>Edad</label>
+            <input name="EdadEstu" type="number" placeholder="18">
+        </div>
+         <div class="">
+            <label>Carrera</label>
+            <input name="Carrera" type="text" placeholder="Ingeniería">
+        </div>
+        <div class="">
+            <label>Nota1</label>
+            <input name="Nota1" type="number" min="0" max="5" step="0.1" required>
+        </div>
+         <div class="">
+            <label>Nota2</label>
+            <input name="Nota2"type="number" min="0" max="5" step="0.1" required>
+        </div>
+         <div class="">
+            <label>Nota3</label>
+            <input name="Nota3" type="number" min="0" max="5" step="0.1" required>
+        </div>
+        <div class="">
+            <button type="submit">
+                Registrar
+            </button>
+        </div>
+    </form>
+    
+</body>
+</html>

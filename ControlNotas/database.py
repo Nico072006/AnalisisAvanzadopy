@@ -30,6 +30,21 @@ def obtenerestudiantes():
     conn.close()
     return df
 
+#Registrar estudiante 
+def insertar_estudiante(NombreEstu, EdadEstu, Carrera, Nota1, Nota2, Nota3, Promedio, Desempeno):
+    conn = conectar()
+    cursor = conn.cursor()
+
+    query ="""INSERT INTO estudiantes (NombreEstu, EdadEstu, Carrera, Nota1, Nota2, Nota3, Promedio, Desempeno) 
+    values (%s, %s, %s, %s, %s, %s, %s, %s)"""
+
+    cursor.execute(query, (NombreEstu, EdadEstu, Carrera, Nota1, Nota2, Nota3, Promedio, Desempeno))
+    conn.commit()
+    conn.close()
+    
+
+
+
 if __name__ == "__main__":
     try:
         conn = conectar()

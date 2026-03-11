@@ -3,17 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dashboard</title>
+     <title>Dashboard</title>
 </head>
 <body>
-    <H1>Bienvenido {{usuario}} al dashboard</H1>
-
-    <iframe 
-        src="/dashprinci/" 
-        width="100%" 
-        height="800px" 
-        style="border: none;" >
-    </iframe>
-    
+ 
+<h2>Bienvenido {{usuario}} al dashboard</h2>
+ 
+<div>
+    <a  href="/logout"
+       style="background:red;
+       color:white;
+       padding:8px 15px;
+       text-decoration:none;
+       border-radius:5px">
+        Cerrar sesión
+    </a>
+</div>
+<div>
+    <a href="/registro" 
+        style="background:red;
+        color:white;
+        padding:8px 15px;
+        text-decoration:none;
+        border-radius:5px">
+        Registrar Estudiante</a>
+</div>
+<div>
+    <a href="/cargamasiva" 
+        style="background:red;
+        color:white;
+        padding:8px 15px;
+        text-decoration:none;
+        border-radius:5px">
+        Carga Masiva</a>
+</div>
+  
+ 
+<iframe
+    src="/dashprincipal/"
+    width="100%"
+    height="800px"
+    style="border:none;">
+</iframe>
+ 
 </body>
 </html>
