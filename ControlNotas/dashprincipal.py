@@ -15,10 +15,10 @@ def creartablero(server):
     appnotas.layout = html.Div([
         html.H1("TABLERO DE CONTROL ACADÉMICO", style={
             "textAlign": "center",
-            "backgroundColor": "#1E1BD2",
+            "backgroundColor": "black",
             "color": "#FFFFFF",
-            "padding": "20px",
-            "borderRadius": "10px"
+            "padding": "30px",
+            "borderRadius": "50px"
         }),
 
         # Filtros
@@ -30,7 +30,14 @@ def creartablero(server):
                     options=[{"label": ca, "value": ca} for ca in sorted(df["Carrera"].unique())],
                     value=df["Carrera"].unique()[0]
                 ),
-            ], style={"width": "30%", "display": "inline-block", "padding": "10px"}),
+            ], style={"width": "40%",
+                    "display": "inline-block",
+                    "padding": "20px",
+                    "margin": "10px",
+                    "color":"black",
+
+
+                    }),
 
             html.Div([
                 html.Label("Rango de Edad"),
@@ -42,7 +49,10 @@ def creartablero(server):
                     value=[df["EdadEstu"].min(), df["EdadEstu"].max()],
                     tooltip={"placement": "bottom", "always_visible": True}
                 ),
-            ], style={"width": "30%", "display": "inline-block", "padding": "10px"}),
+            ], style={"width": "40%",
+                    "display": "inline-block",
+                    "padding": "20px"
+                    }),
 
             html.Div([
                 html.Label("Rango promedio"),
@@ -52,18 +62,33 @@ def creartablero(server):
                     value=[0, 5],
                     tooltip={"placement": "bottom", "always_visible": True}
                 ),
-            ], style={"width": "30%", "display": "inline-block", "padding": "10px"}),
-        ], style={"display": "flex", "justifyContent": "center"}),
+            ], style={"width": "40%",
+                    "display": "inline-block", 
+                    "padding": "20px"
+                    }),
+
+        ], style={"display": "flex",
+                   "justifyContent": "center"
+                   }),
 
         html.Br(),
         dcc.Input(id="busqueda", type="text", placeholder="Buscar por nombre...", 
-                  style={"width": "50%", "margin": "auto", "display": "block", "padding": "10px"}),
+                  style={"width": "50%",
+                        "margin": "auto",
+                        "display": "block", 
+                        "padding": "10px",
+                        "border": "1px solid black",
+                        "border-radius": "50px",
+                        }),
         
         html.Br(),
         dcc.Graph(id="gran_detallado"), 
 
         # KPIs
-        html.Div(id="Kpis", style={"display": "flex", "justifyContent": "space-around", "margin": "20px"}),
+        html.Div(id="Kpis", style={"display": "flex", 
+                                "justifyContent": "space-around", 
+                                "margin": "30px"
+                                }),
 
         # Tabla
         dcc.Loading(
@@ -75,8 +100,8 @@ def creartablero(server):
                 sort_action="native",
                 row_selectable="multi",
                 style_table={"overflowX": "auto"},
-                style_cell={"textAlign": "center", "padding": "5px"},
-                style_header={"backgroundColor": "rgb(230, 230, 230)", "fontWeight": "bold"}
+                style_cell={"textAlign": "center", "padding": "10px"},
+                style_header={"backgroundColor": "#1a1a1a", "color": "#00f2ff", "fontWeight": "bold", "border": "1px solid #333"}
             ), type="circle"
         ),
 
