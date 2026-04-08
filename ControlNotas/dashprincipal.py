@@ -113,6 +113,7 @@ def creartablero(server):
             dcc.Tab(label="Distribución (Histograma)", children=[dcc.Graph(id="histograma")]),
             dcc.Tab(label="Dispersión Edad vs Promedio", children=[dcc.Graph(id="dispersion")]),
             dcc.Tab(label="Análisis por Edad", children=[dcc.Graph(id="pie")]),
+            dcc.Tab(label="Rango de edad",children=[dcc.Graph(id="RangoEdad")])
         ]),
 
         dcc.Interval(id="intervalo", interval=30000, n_intervals=0) # 30 seg para refrescar
@@ -127,6 +128,7 @@ def creartablero(server):
         Output("histograma", "figure"),
         Output("dispersion", "figure"),
         Output("pie", "figure"),
+        Output("RangoEdad", "figure"),
         Input("filtro carrera", "value"),
         Input("slider_EdadEstu", "value"),
         Input("slider_promedio", "value"),
@@ -156,8 +158,17 @@ def creartablero(server):
             html.Div([html.H4("Estudiantes"), html.H2(total)], className="kpi-card"),
             html.Div([html.H4("Nota Máxima"), html.H2(maximo)], className="kpi-card"),
         ]
+
+
+
+
         # Nota: añade estilos CSS o clases para los kpi-card
         
+
+        edadbar= px.bar(filtro.groupby("RangoEdad").size().reset_index(name="Cantidad"),
+                        x="RangoEdad",
+                        y="Cantidad",
+                        title="Cantidad de Estudiantes por Edad")
         # Gráficos
         fig_barras = px.bar(filtro, x="NombreEstu", y="Promedio", title="Notas por Estudiante", color="Promedio")
         
