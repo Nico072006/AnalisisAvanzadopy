@@ -1,1 +1,1 @@
-web: gunicorn ControlNotas.app:app
+gunicorn app:server
