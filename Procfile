@@ -1,1 +1,1 @@
-web: gunicorn AnalisisAvanzado:app
+web: gunicorn ControlNotas.app:app
