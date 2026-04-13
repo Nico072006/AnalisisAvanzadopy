@@ -1,7 +1,7 @@
 import mysql.connector
 import pandas as pd
 import os
-
+#conexion bd
 def conectar():
     return mysql.connector.connect(
         host=os.getenv("MYSQLHOST"),
